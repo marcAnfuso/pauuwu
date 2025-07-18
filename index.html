@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="heart.png" />
+  <title>Para Pau 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      background-image: url("tokyo.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 192, 203, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8em;
+      font-weight: 600;
+      margin: 30px 20px 10px;
+      padding: 0 10px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo-container {
+      margin: 30px 0;
+      width: 250px;
+      height: 250px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: tilt 4s infinite ease-in-out;
+      transition: transform 0.3s;
+      border: 4px solid rgba(255, 255, 255, 0.6);
+      position: relative;
+    }
+
+    .photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .photo-container img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    @keyframes tilt {
+      0% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
+    .message {
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px;
+      font-size: 1.1em;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .play-button {
+      margin: 40px 0;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      background: #ffffff;
+      color: #bb377d;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .play-button:hover {
+      background: #ffe4f2;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Paginita para mi pendeja hermosa s2</h1>
+
+  <div class="photo-container">
+    <img src="pau1.png" class="active" alt="Foto 1">
+    <img src="pau2.png" alt="Foto 2">
+    <img src="pau3.png" alt="Foto 3">
+  </div>
+
+  <div class="message">
+    <p>Gracias por cada día compartir algo diferente y nuevo conmigo.
+      Gracias también por bancarme en mis dudas y mi desconfianza.
+      Gracias por darme la oportunidad de conocerte.<br>
+      Sos una persona hermosa que conocí gracias a algo que me encanta, que es entrenar.
+      Espero que con el tiempo podamos hacer eso, y muchas más cosas juntos. <br>
+      Sé que esta paginita es algo simple y boludo, pero nada, espero que te saque una sonrisa💗.</p>
+  </div>
+
+  <button class="play-button" onclick="toggleSong()" id="playButton">🎶 Te dejé un regalito, dale play</button>
+
+  <audio id="song" src="theweeknd.mp3"></audio>
+
+  <script>
+    const song = document.getElementById('song');
+    const playButton = document.getElementById('playButton');
+    song.volume = 0.5;
+
+    function toggleSong() {
+      if (song.paused) {
+        song.play();
+        playButton.innerText = "⏸ Pausar regalito";
+      } else {
+        song.pause();
+        playButton.innerText = "🎶 Te dejé un regalito, dale play";
+      }
+    }
+
+    song.addEventListener('ended', () => {
+      playButton.innerText = "🎶 Te dejé un regalito, dale play";
+    });
+
+    // Foto rotativa
+    const images = document.querySelectorAll(".photo-container img");
+    let current = 0;
+
+    setInterval(() => {
+      images[current].classList.remove("active");
+      current = (current + 1) % images.length;
+      images[current].classList.add("active");
+    }, 3000);
+  </script>
+</body>
+</html>
